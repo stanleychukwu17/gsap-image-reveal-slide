@@ -1,0 +1,25 @@
+@forward '../../styles/globals/';
+@use '../../styles/util/' as u1;
+
+
+body {
+    background-color: #f8fafc !important;
+}
+.AppCvr {
+    display: flex;
+    justify-items: center;
+    align-items: center
+}
+.AppMain {
+    @include u1.block_display();
+    width: 200px;
+    height: 200px;
+    margin: 50px 40px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 60px;
+    font-weight: 600;
+    background: orange;
+    color: lightseagreen;
+    border-radius: 100px;
+}
