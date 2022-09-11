@@ -6,11 +6,15 @@ import { motion } from 'framer-motion';
 const App = () => {
 
     return (
-        <>
-            <div>
-                This laptop color, i say, is a LEGEND. No cap. Hp good job🙌
+        <div className="main_prt">
+            <div className="include media">
+                check how e be
             </div>
-        </>
+            <div className=""></div>
+            <div className=""></div>
+            <div className=""></div>
+            <div className=""></div>
+        </div>
 
     )
 
