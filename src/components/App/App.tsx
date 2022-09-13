@@ -1,4 +1,8 @@
 import { motion } from 'framer-motion';
+import {gsap} from 'gsap';
+import { CustomEase } from "gsap/CustomEase";
+
+
 
 import './app.scss';
 
@@ -7,6 +11,8 @@ import mule from '../../assets/images/mule.png'
 import check from '../../assets/svg/circle-check.svg'
 import location from '../../assets/svg/location.svg'
 
+// registers the gsap custom plugin
+gsap.registerPlugin(CustomEase);
 
 
 const App = () => {
@@ -16,7 +22,7 @@ const App = () => {
             <div className="TopGuy">                
                 <div className="TopGuy__header">
                     <div className="">StickerMule</div>
-                    <div className="">
+                    <div className="SvgAndOthers">
                         <div className=""><img src={check} alt="" /></div>
                         <div className="">Home of stickers</div>
                     </div>
@@ -25,7 +31,7 @@ const App = () => {
                     <img src={mule} alt="" />
                 </div>
                 <div className="TopGuy__lastMen">
-                    <div className="">
+                    <div className="SvgAndOthers">
                         <div className=""><img src={location} alt="" /></div>
                         <div className="">Amsterdam, New York</div>
                     </div>
@@ -37,7 +43,9 @@ const App = () => {
                 </div>
             </div>
             <div className="BottomGuy">
-
+                <div className=""></div>
+                <div className=""></div>
+                <div className=""></div>
             </div>
         </div>
 
