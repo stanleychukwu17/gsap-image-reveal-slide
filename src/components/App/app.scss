@@ -39,10 +39,6 @@ body {
     div {
         position: relative;
     }
-
-    > div {
-        padding: 25px 2%;
-    }
 }
 
 // the class was used in multiple places, that's why i abstracted it.
@@ -60,6 +56,7 @@ body {
 .TopGuy {
     min-height: 600px;
     color: #fff;
+    padding: 25px 2%;
 
     &__header {
         @include u1.flex_display();
@@ -99,6 +96,7 @@ body {
 .BottomGuy {
     background-color: #fff;
     margin: 0 0 150px;
+    padding: 35px 2%;
 
     .BtmHeader {
         @include u1.flex_display();
@@ -113,5 +111,34 @@ body {
             width: 200px;
             font-size: u1.rem(11);
         }
+    }
+
+    .BtmMidMain {
+        @include u1.flex_display();
+        padding: 45px 0;
+
+        .BtmMid_1 {
+            width: min(40%, 320px);
+            font-size: clamp(12px, 10px + .5vw, 14px);
+
+            img {
+                width: 100%;
+            }
+
+            > div {
+                margin: 15px 0;
+            }
+        }
+        .BtmMid_2 {
+            width: min(45%, 300px);
+            font-size: u1.rem(14);
+            font-size: clamp(10px, 10px + .5vw, 15px);
+            line-height: 1.45;
+        }
+    }
+
+    .BtmLastM {
+        @include u1.flex_display();
+        font-weight: 700;
     }
 }
