@@ -43,9 +43,25 @@ const App = () => {
                 </div>
             </div>
             <div className="BottomGuy">
-                <div className=""></div>
-                <div className=""></div>
-                <div className=""></div>
+                <div className="">
+                    <div className="">StickerMule</div>
+                    <div className="SvgAndOthers">
+                        Nulla non proident aliqua deserunt magna pariatur proident veniam deserunt proident.
+                    </div>
+                </div>
+                <div className="">
+                    <div className="">
+                        <div className=""></div>
+                        <div className="">Ex irure sunt consectetur velit deserunt consectetur mollit sunt ipsum minim aliquip. Non amet elit in veniam cupidatat sint commodo qui. In sunt aliquip culpa magna. Mollit incididunt ex id dolore et pariatur cillum proident culpa elit sit. Proident officia occaecat irure dolore consequat culpa tempor ea laboris nulla est exercitation.</div>
+                    </div>
+                    <div className="">
+                        Deserunt dolore nisi consequat laborum fugiat deserunt duis culpa incididunt. Exercitation cupidatat in in laborum voluptate aliquip id nisi non cillum excepteur deserunt nostrud. Dolore ex nulla consectetur nulla do ad ut ad non laboris anim id aute laboris. Anim cillum deserunt non ea do deserunt. Consequat proident cillum ad labore adipisicing nulla exercitation aliquip eu ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad.
+                    </div>
+                </div>
+                <div className="">
+                    <div className="">Designed By STANLEY</div>
+                    <div className="">2022</div>
+                </div>
             </div>
         </div>
 
