@@ -43,9 +43,9 @@ const App = () => {
                 </div>
             </div>
             <div className="BottomGuy">
-                <div className="">
+                <div className="BtmHeader">
                     <div className="">StickerMule</div>
-                    <div className="SvgAndOthers">
+                    <div className="">
                         Nulla non proident aliqua deserunt magna pariatur proident veniam deserunt proident.
                     </div>
                 </div>

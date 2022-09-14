@@ -32,6 +32,12 @@
     }
 };
 
+@mixin flex_display($jt: 'space-between') {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+};
+
 // margin: rem(35) rem(35) rem(100);
 
 @mixin neo_button() {

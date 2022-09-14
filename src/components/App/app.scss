@@ -39,17 +39,30 @@ body {
     div {
         position: relative;
     }
+
+    > div {
+        padding: 25px 2%;
+    }
+}
+
+// the class was used in multiple places, that's why i abstracted it.
+.SvgAndOthers {
+    display: flex;
+    align-items: center;
+
+    > div:first-child {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px 0 0;
+    }
 }
 
 .TopGuy {
     min-height: 600px;
     color: #fff;
-    padding: 25px 2%;
 
     &__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @include u1.flex_display();
 
         > div:first-child {
             font-weight: bold;
@@ -83,13 +96,22 @@ body {
     }
 }
 
-.SvgAndOthers {
-    display: flex;
-    align-items: center;
+.BottomGuy {
+    background-color: #fff;
+    margin: 0 0 150px;
 
-    > div:first-child {
-        width: 40px;
-        height: 40px;
-        margin: 0 10px 0 0;
+    .BtmHeader {
+        @include u1.flex_display();
+
+        > div:first-child {
+            font-weight: bold;
+            font-size: u1.rem(30);
+        }
+
+        > div:nth-child(2) {
+            top: 5px;
+            width: 200px;
+            font-size: u1.rem(11);
+        }
     }
 }
