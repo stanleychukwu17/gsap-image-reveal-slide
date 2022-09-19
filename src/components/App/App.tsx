@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
-import gsap, {Power2} from 'gsap';
+import gsap, {Expo} from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { CSSPlugin } from "gsap/CSSPlugin";
@@ -23,6 +23,7 @@ gsap.registerPlugin(CSSPlugin)
 const App = () => {
     const mainAppAnim = useRef<HTMLDivElement | null>(null)
     const h1Anim = useRef<HTMLDivElement | null>(null)
+    const tL = useRef<GSAPTimeline | undefined>();
 
 
     // runs just once
@@ -30,10 +31,27 @@ const App = () => {
         // prevents flashes when the page loads
         gsap.fromTo(mainAppAnim.current, {opacity:0}, {opacity: 1, duration: 0})
 
-        if (h1Anim.current) {
-            const rule = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::after")
-            gsap.to(rule, {cssRule: {scaleX: 0, transformOrigin: 'right'}, duration:2, ease:Power2.easeInOut})
-        }
+        // creates the gsap timeline
+        tL.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}});
+
+        // grabs the before pseudo element to be animated
+        const r1bBefore = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::before")
+        const r2Before = CSSRulePlugin.getRule(".TopGuy__header > div:nth-child(2)::before")
+        const r3Before = CSSRulePlugin.getRule(".TopGuy__midImg::before")
+        const rulesBeforeArray:CSSRule[] = [r1bBefore, r2Before, r3Before]
+
+        // grabs the after pseudo element to be animated
+        const r1After = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::after")
+        const r2After = CSSRulePlugin.getRule(".TopGuy__header > div:nth-child(2)::after")
+        const r3After = CSSRulePlugin.getRule(".TopGuy__midImg::after")
+        const rulesAfterArray:CSSRule[] = [r1After, r2After, r3After]
+
+        // kicks of the timeLine animation
+        tL.current
+            .fromTo(rulesAfterArray,
+                {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}, stagger: .2})
+            .to(rulesAfterArray, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
+            .to(rulesBeforeArray, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
 
 
         // return () => {

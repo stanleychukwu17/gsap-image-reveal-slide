@@ -2,8 +2,23 @@
 @use '../../styles/util/' as u1;
 
 $main_black: #1F2326; // the main black color for the site
+$pseudo_bg_color: #7f8c8d;
 
 // this is a min app, that is why i'll create this function here, otherwise i would i have moved the function to the utils function in the css folder
+@mixin block_4_pseudo($bgColor: $main_black) {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background-color: $bgColor;
+};
+
+
 
 .test1 {
     @include u1.media(">=desktop") {
@@ -54,6 +69,9 @@ body {
         margin: 0 10px 0 0;
     }
 }
+.jk4Anim {
+    
+}
 
 .TopGuy {
     min-height: 600px;
@@ -68,31 +86,27 @@ body {
             font-size: 30px;
             padding: 0 1px;
 
-            &::after {
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                background-color: rgb(165, 190, 198);
-            }
+            &::before { @include block_4_pseudo() }
+            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
 
         > div:nth-child(2) {
-            top: 5px
+            top: 5px;
+
+            &::before { @include block_4_pseudo() }
+            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
     }
 
     &__midImg {
         width: 100%;
-        min-height: 580px;
+        min-height: 600px;
         margin: 20px auto;
 
-        img {
-            max-width: 100%;
-        }
+        img { max-width: 100%; }
+
+        &::before { @include block_4_pseudo(#0f1112) }
+        &::after { @include block_4_pseudo(lighten($main_black, 10)) }
     }
 
     &__lastMen {
@@ -100,10 +114,18 @@ body {
         align-items: center;
         justify-content: space-between;
 
+        > div:nth-child(1) {
+            &::before { @include block_4_pseudo() }
+            &::after { @include block_4_pseudo($pseudo_bg_color) }
+        }
+
         > div:nth-child(2) {
             width: 200px;
             font-size: 11px;
             color: darken(#a4b0be, 10);
+
+            &::before { @include block_4_pseudo() }
+            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
     }
 }
