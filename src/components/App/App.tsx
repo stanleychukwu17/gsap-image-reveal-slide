@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useLayoutEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+// import { motion } from 'framer-motion';
 import gsap, {Expo} from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
