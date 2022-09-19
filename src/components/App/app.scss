@@ -69,9 +69,11 @@ body {
         margin: 0 10px 0 0;
     }
 }
-.jk4Anim {
-    
+.PsBlock {
+    &::before { @include block_4_pseudo(#0f1112) }
+    &::after { @include block_4_pseudo(lighten($main_black, 10)) }
 }
+
 
 .TopGuy {
     min-height: 600px;
@@ -85,16 +87,10 @@ body {
             font-weight: bold;
             font-size: 30px;
             padding: 0 1px;
-
-            &::before { @include block_4_pseudo() }
-            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
 
         > div:nth-child(2) {
             top: 5px;
-
-            &::before { @include block_4_pseudo() }
-            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
     }
 
@@ -114,18 +110,10 @@ body {
         align-items: center;
         justify-content: space-between;
 
-        > div:nth-child(1) {
-            &::before { @include block_4_pseudo() }
-            &::after { @include block_4_pseudo($pseudo_bg_color) }
-        }
-
         > div:nth-child(2) {
             width: 200px;
             font-size: 11px;
             color: darken(#a4b0be, 10);
-
-            &::before { @include block_4_pseudo() }
-            &::after { @include block_4_pseudo($pseudo_bg_color) }
         }
     }
 }

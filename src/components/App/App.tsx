@@ -35,24 +35,19 @@ const App = () => {
         tL.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}});
 
         // grabs the before pseudo element to be animated
-        const r1bBefore = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::before")
-        const r2Before = CSSRulePlugin.getRule(".TopGuy__header > div:nth-child(2)::before")
-        const r3Before = CSSRulePlugin.getRule(".TopGuy__midImg::before")
-        const rulesBeforeArray:CSSRule[] = [r1bBefore, r2Before, r3Before]
+        const r1bBefore = CSSRulePlugin.getRule(".PsBlock::before")
+        const rulesBeforeArray:CSSRule[] = [r1bBefore]
 
         // grabs the after pseudo element to be animated
-        const r1After = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::after")
-        const r2After = CSSRulePlugin.getRule(".TopGuy__header > div:nth-child(2)::after")
-        const r3After = CSSRulePlugin.getRule(".TopGuy__midImg::after")
-        const rulesAfterArray:CSSRule[] = [r1After, r2After, r3After]
+        const r1After = CSSRulePlugin.getRule(".PsBlock::after")
+        const rulesAfterArray:CSSRule[] = [r1After]
 
-        // kicks of the timeLine animation
+        // kicks off the time-line animation
         tL.current
             .fromTo(rulesAfterArray,
-                {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}, stagger: .2})
+                {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
             .to(rulesAfterArray, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
             .to(rulesBeforeArray, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
-
 
         // return () => {
         // };
@@ -62,21 +57,21 @@ const App = () => {
         <div className="AppMain" ref={mainAppAnim}>
             <div className="TopGuy">                
                 <div className="TopGuy__header">
-                    <div className="stickHd" ref={h1Anim}>StickerMule</div>
-                    <div className="SvgAndOthers">
+                    <div className="stickHd PsBlock" ref={h1Anim}>StickerMule</div>
+                    <div className="SvgAndOthers PsBlock">
                         <div className=""><img src={check} alt="" /></div>
                         <div className="">Home of stickers</div>
                     </div>
                 </div>
-                <div className="TopGuy__midImg">
+                <div className="TopGuy__midImg PsBlock">
                     <img src={mule} alt="" />
                 </div>
                 <div className="TopGuy__lastMen">
-                    <div className="SvgAndOthers">
+                    <div className="SvgAndOthers PsBlock">
                         <div className=""><img src={location} alt="" /></div>
                         <div className="">Amsterdam, New York</div>
                     </div>
-                    <div className="">
+                    <div className="PsBlock">
                         Nulla duis aute in fugiat do est nulla ullamco culpa
                         consequat Lorem quis consectetur. Incididunt consequat
                         occaecat ipsum qui nulla cillum irure non.
