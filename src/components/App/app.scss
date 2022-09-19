@@ -119,7 +119,8 @@ body {
 
         .BtmMid_1 {
             width: min(40%, 320px);
-            font-size: clamp(12px, 10px + .5vw, 14px);
+            // font-size: clamp(12px, 10px + .5vw, 14px);
+            font-size: u1.rem(13.5);
 
             img {
                 width: 100%;
@@ -131,8 +132,8 @@ body {
         }
         .BtmMid_2 {
             width: min(45%, 300px);
-            font-size: u1.rem(14);
-            font-size: clamp(10px, 10px + .5vw, 15px);
+            font-size: u1.rem(13.5);
+            // font-size: clamp(10px, 10px + .5vw, 15px);
             line-height: 1.45;
         }
     }

@@ -72,7 +72,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="BtmLastM">
-                    <div className="">Designed By STANLEY</div>
+                    <div className="">Designed by: STANLEY</div>
                     <div className="">2022</div>
                 </div>
             </div>
