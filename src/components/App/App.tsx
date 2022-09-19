@@ -1,6 +1,9 @@
+import React, { useEffect, useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
-import {gsap} from 'gsap';
+import gsap from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+import { CSSPlugin } from "gsap/CSSPlugin";
 
 
 
@@ -14,15 +17,33 @@ import location from '../../assets/svg/location.svg'
 
 // registers the gsap custom plugin
 gsap.registerPlugin(CustomEase);
-
+gsap.registerPlugin(CSSRulePlugin)
+gsap.registerPlugin(CSSPlugin)
 
 const App = () => {
+    const mainAppAnim = useRef<HTMLDivElement | null>(null)
+    const h1Anim = useRef<HTMLDivElement | null>(null)
+
+
+    // runs just once
+    useEffect(() => {
+        // prevents flashes when the page loads
+        gsap.fromTo(mainAppAnim.current, {opacity:0}, {opacity: 1, duration: 0})
+
+        // animates the StickerMule logo
+        // gsap.fromTo(h1Anim.current,
+        //     {opacity:0, y: -30}, {opacity: 1, y:0,  duration: .5, delay: .2}
+        // )
+
+        // return () => {
+        // };
+    }, [])
 
     return (
-        <div className="AppMain">
+        <div className="AppMain" ref={mainAppAnim}>
             <div className="TopGuy">                
                 <div className="TopGuy__header">
-                    <div className="">StickerMule</div>
+                    <div className="" ref={h1Anim}>StickerMule</div>
                     <div className="SvgAndOthers">
                         <div className=""><img src={check} alt="" /></div>
                         <div className="">Home of stickers</div>
