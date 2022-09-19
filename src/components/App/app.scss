@@ -1,7 +1,9 @@
 @forward '../../styles/globals/';
 @use '../../styles/util/' as u1;
 
-$main_black: #1F2326;
+$main_black: #1F2326; // the main black color for the site
+
+// this is a min app, that is why i'll create this function here, otherwise i would i have moved the function to the utils function in the css folder
 
 .test1 {
     @include u1.media(">=desktop") {
@@ -64,6 +66,18 @@ body {
         > div:first-child {
             font-weight: bold;
             font-size: 30px;
+            padding: 0 1px;
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background-color: rgb(165, 190, 198);
+            }
         }
 
         > div:nth-child(2) {

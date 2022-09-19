@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
+import gsap, {Power2} from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { CSSPlugin } from "gsap/CSSPlugin";
@@ -30,10 +30,11 @@ const App = () => {
         // prevents flashes when the page loads
         gsap.fromTo(mainAppAnim.current, {opacity:0}, {opacity: 1, duration: 0})
 
-        // animates the StickerMule logo
-        // gsap.fromTo(h1Anim.current,
-        //     {opacity:0, y: -30}, {opacity: 1, y:0,  duration: .5, delay: .2}
-        // )
+        if (h1Anim.current) {
+            const rule = CSSRulePlugin.getRule(".TopGuy__header > div:first-child::after")
+            gsap.to(rule, {cssRule: {scaleX: 0, transformOrigin: 'right'}, duration:2, ease:Power2.easeInOut})
+        }
+
 
         // return () => {
         // };
@@ -43,7 +44,7 @@ const App = () => {
         <div className="AppMain" ref={mainAppAnim}>
             <div className="TopGuy">                
                 <div className="TopGuy__header">
-                    <div className="" ref={h1Anim}>StickerMule</div>
+                    <div className="stickHd" ref={h1Anim}>StickerMule</div>
                     <div className="SvgAndOthers">
                         <div className=""><img src={check} alt="" /></div>
                         <div className="">Home of stickers</div>
