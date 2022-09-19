@@ -23,6 +23,7 @@ gsap.registerPlugin(CSSPlugin)
 const App = () => {
     const mainAppAnim = useRef<HTMLDivElement | null>(null)
     const h1Anim = useRef<HTMLDivElement | null>(null)
+    const img1ref = useRef<HTMLImageElement | null>(null)
     const tL = useRef<GSAPTimeline | undefined>();
 
 
@@ -48,7 +49,8 @@ const App = () => {
                 {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
             .to(rulesAfterArray, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
             .to(rulesBeforeArray, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
-
+            .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut})
+        // tL.current.pause()
         // return () => {
         // };
     }, [])
@@ -59,12 +61,12 @@ const App = () => {
                 <div className="TopGuy__header">
                     <div className="stickHd PsBlock" ref={h1Anim}>StickerMule</div>
                     <div className="SvgAndOthers PsBlock">
-                        <div className=""><img src={check} alt="" /></div>
+                        <div className=""><img src={check} alt=""/></div>
                         <div className="">Home of stickers</div>
                     </div>
                 </div>
                 <div className="TopGuy__midImg PsBlock">
-                    <img src={mule} alt="" />
+                    <img src={mule} alt="" ref={img1ref} />
                 </div>
                 <div className="TopGuy__lastMen">
                     <div className="SvgAndOthers PsBlock">
