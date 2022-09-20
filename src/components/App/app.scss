@@ -74,8 +74,8 @@ body {
     &::after { @include block_4_pseudo(lighten($main_black, 10)) }
 }
 .PsBottom {
-    &::before { @include block_4_pseudo(#fff) }
-    &::after { @include block_4_pseudo(#eff5f7) }
+    &::before { @include block_4_pseudo(#efeff0) }
+    &::after { @include block_4_pseudo(#a3a0a9) }
 }
 
 
@@ -159,8 +159,13 @@ body {
             // font-size: clamp(12px, 10px + .5vw, 14px);
             font-size: u1.rem(13.5);
 
-            img {
-                width: 100%;
+            .BtmMid_Img {
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    transform: scale(1.3);
+                }
             }
 
             > div {

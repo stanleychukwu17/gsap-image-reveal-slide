@@ -45,18 +45,22 @@ const App = () => {
 
         // kicks off the time-line animation
         tL.current
-            .fromTo(r1After,
-                {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
+            .fromTo(r1After, {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
             .to(r1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
             .to(r1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
             .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut})
 
-        // 
+        // the animation for the bottom section, but this animation will not be played immediately.. Only played when it is called to action
+        const z1bBefore = CSSRulePlugin.getRule(".PsBottom::before")
+        const z1After = CSSRulePlugin.getRule(".PsBottom::after")
         tL2.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}})
             .to('.BottomGuy', {y:0, duration: 2})
             .fromTo('.AnimT1', {y: '150px', opacity:0}, {y:0, opacity:1, duration: 2, stagger:.5}, '-=1.7')
-
-        tL2.current.pause()
+            .fromTo(z1After, {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}}, '-=1.5')
+            .to(z1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
+            .to(z1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
+            .to('.btm_img', {scale: 1, transformOrigin: 'center', 'ease':Expo.easeOut}, '-=.5')
+        tL2.current.pause() // Paused!!!
 
         // creates a timeline
         // return () => {
@@ -107,7 +111,9 @@ const App = () => {
                 </div>
                 <div className="BtmMidMain">
                     <div className="BtmMid_1">
-                        <div className="PsBottom"><img src={mule2} alt="" /></div>
+                        <div className="PsBottom">
+                            <div className="BtmMid_Img"><img className='btm_img' src={mule2} alt="" /></div>
+                        </div>
                         <div className="PsBottom">
                             Ex irure sunt consectetur velit deserunt consectetur mollit sunt ipsum minim
                             aliquip. Non amet elit in veniam cupidatat sint commodo qui. In sunt aliquip culpa magna.
@@ -130,8 +136,8 @@ const App = () => {
                     </div>
                 </div>
                 <div className="BtmLastM">
-                    <div className="">Designed by: STANLEY</div>
-                    <div className="">2022</div>
+                    <div className="AnimT1">Designed by: STANLEY</div>
+                    <div className="AnimT1">2022</div>
                 </div>
             </div>
         </div>
