@@ -26,6 +26,8 @@ const App = () => {
     const img1ref = useRef<HTMLImageElement | null>(null)
     const tL = useRef<GSAPTimeline | undefined>();
     const [showBottomSection, setShowBottomSection] = useState<boolean | undefined>()
+    const tL2 = useRef<GSAPTimeline>(null!);
+
 
     // runs just once
     useEffect(() => {
@@ -51,11 +53,25 @@ const App = () => {
             .to(rulesBeforeArray, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
             .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut})
         // tL.current.pause()
+
+        tL2.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}})
+        tL2.current.to('.BottomGuy', {y:0, duration: 2})
+        tL2.current.pause()
+
+        // creates a timeline
         // return () => {
         // };
     }, [])
 
-
+    // for animating the bottom section to the top
+    useEffect(() => {
+            if (showBottomSection === true) {
+                tL2.current.play()
+            } else if (showBottomSection === false) {
+                tL2.current.reverse()
+            }
+    }, [showBottomSection])
+    
 
     return (
         <div className="AppMain" ref={mainAppAnim}>
@@ -84,7 +100,7 @@ const App = () => {
             </div>
             <div className="BottomGuy">
                 <div className="BtmHeader">
-                    <div className="">StickerMule</div>
+                    <div className="AnimT1" onClick={() => { setShowBottomSection(false) }}>StickerMule</div>
                     <div className="">
                         Nulla non proident aliqua deserunt magna pariatur proident veniam deserunt proident.
                     </div>
