@@ -55,8 +55,10 @@ const App = () => {
         // tL.current.pause()
 
         tL2.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}})
-        tL2.current.to('.BottomGuy', {y:0, duration: 2})
-        tL2.current.pause()
+            .to('.BottomGuy', {y:0, duration: 2})
+            .fromTo('.AnimT1', {y: '150px', opacity:0}, {y:0, opacity:1, duration: 2, stagger:.5}, '-=1.7')
+                
+        // tL2.current.pause()
 
         // creates a timeline
         // return () => {
@@ -101,7 +103,7 @@ const App = () => {
             <div className="BottomGuy">
                 <div className="BtmHeader">
                     <div className="AnimT1" onClick={() => { setShowBottomSection(false) }}>StickerMule</div>
-                    <div className="">
+                    <div className="AnimT1">
                         Nulla non proident aliqua deserunt magna pariatur proident veniam deserunt proident.
                     </div>
                 </div>
@@ -113,7 +115,7 @@ const App = () => {
                             aliquip. Non amet elit in veniam cupidatat sint commodo qui. In sunt aliquip culpa magna.
                         </div>
                     </div>
-                    <div className="BtmMid_2">
+                    <div className="BtmMid_2 AnimT1">
                         Deserunt dolore nisi consequat laborum fugiat deserunt duis culpa incididunt. Exercitation
                         cupidatat in in laborum voluptate aliquip id nisi non cillum excepteur deserunt nostrud. Dolore
                         ex nulla consectetur nulla do ad ut ad non laboris anim id aute laboris. Anim cillum deserunt non
