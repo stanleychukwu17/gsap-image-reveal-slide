@@ -37,28 +37,26 @@ const App = () => {
         // creates the gsap timeline
         tL.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}});
 
-        // grabs the before pseudo element to be animated
-        const r1bBefore = CSSRulePlugin.getRule(".PsBlock::before")
-        const rulesBeforeArray:CSSRule[] = [r1bBefore]
-
-        // grabs the after pseudo element to be animated
-        const r1After = CSSRulePlugin.getRule(".PsBlock::after")
-        const rulesAfterArray:CSSRule[] = [r1After]
+        // grabs the before & after pseudo element to be animated
+        const r1bBefore = CSSRulePlugin.getRule(".PsTop::before")
+        const r1After = CSSRulePlugin.getRule(".PsTop::after")
+        // const rulesBeforeArray:CSSRule[] = [r1bBefore]
+        // const rulesAfterArray:CSSRule[] = [r1After]
 
         // kicks off the time-line animation
         tL.current
-            .fromTo(rulesAfterArray,
+            .fromTo(r1After,
                 {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
-            .to(rulesAfterArray, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
-            .to(rulesBeforeArray, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
+            .to(r1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
+            .to(r1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
             .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut})
-        // tL.current.pause()
 
+        // 
         tL2.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}})
             .to('.BottomGuy', {y:0, duration: 2})
             .fromTo('.AnimT1', {y: '150px', opacity:0}, {y:0, opacity:1, duration: 2, stagger:.5}, '-=1.7')
-                
-        // tL2.current.pause()
+
+        tL2.current.pause()
 
         // creates a timeline
         // return () => {
@@ -79,21 +77,21 @@ const App = () => {
         <div className="AppMain" ref={mainAppAnim}>
             <div className="TopGuy">                
                 <div className="TopGuy__header">
-                    <div className="stickHd PsBlock" ref={h1Anim}>StickerMule</div>
-                    <div className="SvgAndOthers PsBlock">
+                    <div className="stickHd PsTop" ref={h1Anim}>StickerMule</div>
+                    <div className="SvgAndOthers PsTop">
                         <div className=""><img src={check} alt=""/></div>
                         <div className="">Home of stickers</div>
                     </div>
                 </div>
-                <div className="TopGuy__midImg PsBlock">
+                <div className="TopGuy__midImg PsTop">
                     <img src={mule} alt="" ref={img1ref} onClick={() => { setShowBottomSection(true) }} />
                 </div>
                 <div className="TopGuy__lastMen">
-                    <div className="SvgAndOthers PsBlock">
+                    <div className="SvgAndOthers PsTop">
                         <div className=""><img src={location} alt="" /></div>
                         <div className="">Amsterdam, New York</div>
                     </div>
-                    <div className="PsBlock">
+                    <div className="PsTop">
                         Nulla duis aute in fugiat do est nulla ullamco culpa
                         consequat Lorem quis consectetur. Incididunt consequat
                         occaecat ipsum qui nulla cillum irure non.
@@ -109,8 +107,8 @@ const App = () => {
                 </div>
                 <div className="BtmMidMain">
                     <div className="BtmMid_1">
-                        <div className=""><img src={mule2} alt="" /></div>
-                        <div className="">
+                        <div className="PsBottom"><img src={mule2} alt="" /></div>
+                        <div className="PsBottom">
                             Ex irure sunt consectetur velit deserunt consectetur mollit sunt ipsum minim
                             aliquip. Non amet elit in veniam cupidatat sint commodo qui. In sunt aliquip culpa magna.
                         </div>

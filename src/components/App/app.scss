@@ -69,9 +69,13 @@ body {
         margin: 0 10px 0 0;
     }
 }
-.PsBlock {
+.PsTop {
     &::before { @include block_4_pseudo(#0f1112) }
     &::after { @include block_4_pseudo(lighten($main_black, 10)) }
+}
+.PsBottom {
+    &::before { @include block_4_pseudo(#fff) }
+    &::after { @include block_4_pseudo(#eff5f7) }
 }
 
 
