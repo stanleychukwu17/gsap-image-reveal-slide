@@ -67,6 +67,7 @@ const App = () => {
         // };
     }, [])
 
+
     // for animating the bottom section to the top
     useEffect(() => {
             if (showBottomSection === true) {
@@ -75,7 +76,7 @@ const App = () => {
                 tL2.current.reverse()
             }
     }, [showBottomSection])
-    
+
 
     return (
         <div className="AppMain" ref={mainAppAnim}>
