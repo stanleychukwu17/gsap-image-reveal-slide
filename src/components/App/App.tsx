@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import { motion } from 'framer-motion';
 import gsap, {Expo} from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
@@ -25,7 +25,7 @@ const App = () => {
     const h1Anim = useRef<HTMLDivElement | null>(null)
     const img1ref = useRef<HTMLImageElement | null>(null)
     const tL = useRef<GSAPTimeline | undefined>();
-
+    const [showBottomSection, setShowBottomSection] = useState<boolean | undefined>()
 
     // runs just once
     useEffect(() => {
@@ -55,6 +55,8 @@ const App = () => {
         // };
     }, [])
 
+
+
     return (
         <div className="AppMain" ref={mainAppAnim}>
             <div className="TopGuy">                
@@ -66,7 +68,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="TopGuy__midImg PsBlock">
-                    <img src={mule} alt="" ref={img1ref} />
+                    <img src={mule} alt="" ref={img1ref} onClick={() => { setShowBottomSection(true) }} />
                 </div>
                 <div className="TopGuy__lastMen">
                     <div className="SvgAndOthers PsBlock">
@@ -103,6 +105,9 @@ const App = () => {
                         ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
                         ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
                         ea do deserunt. Consequat proident cillum ad labore adipisicing nulla exercitation aliquip eu
+                        ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
+                        ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
+                        ea do deserunt. Consequat proident cillum ad labore adipisicing nulla exercitation aliquip eu.
                         ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
                         ullamco do non voluptate. Consectetur ullamco eu culpa id quis commodo nostrud quis culpa ea ad
                         ea do deserunt. Consequat proident cillum ad labore adipisicing nulla exercitation aliquip eu

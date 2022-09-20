@@ -121,9 +121,15 @@ body {
 
 .BottomGuy {
     background-color: #fff;
-    min-height: 750px;
-    margin: 0 0 150px;
+    min-height: 790px;
     padding: 35px 2%;
+    position: absolute !important;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: auto;
+    transform: translateY(105vh);
 
     .BtmHeader {
         @include u1.flex_display();
