@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import { motion } from 'framer-motion';
+
 import gsap, {Expo} from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
