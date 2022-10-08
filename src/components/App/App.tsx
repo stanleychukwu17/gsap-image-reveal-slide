@@ -5,8 +5,7 @@ import { CustomEase } from "gsap/CustomEase";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { CSSPlugin } from "gsap/CSSPlugin";
 
-
-
+// importing of style sheet
 import './app.scss';
 
 // importing of assets
@@ -21,13 +20,14 @@ gsap.registerPlugin(CSSRulePlugin)
 gsap.registerPlugin(CSSPlugin)
 
 const App = () => {
-    const mainAppAnim = useRef<HTMLDivElement | null>(null)
-    const h1Anim = useRef<HTMLDivElement | null>(null)
-    const img1ref = useRef<HTMLImageElement | null>(null)
-    const tL = useRef<GSAPTimeline | undefined>();
+    const mainAppAnim = useRef<HTMLDivElement>({} as HTMLDivElement)
+    const h1Anim = useRef<HTMLDivElement>({} as HTMLDivElement)
+    const img1ref = useRef<HTMLImageElement>({} as HTMLImageElement)
     const [showBottomSection, setShowBottomSection] = useState<boolean | undefined>()
-    const tL2 = useRef<GSAPTimeline>(null!);
+    const tL = useRef<GSAPTimeline | undefined>(); // timeLine 1 for the first section
+    const tL2 = useRef<GSAPTimeline>(null!); // timeLine 2 for the second section
 
+    //* NOTE: Every element with the class of '.PsTop' will have this reveal effect, the .PsTop class as an :after styling that covers the element with dark/gray background 
 
     // runs just once
     useEffect(() => {
@@ -37,38 +37,32 @@ const App = () => {
         // creates the gsap timeline
         tL.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}});
 
-        // grabs the before & after pseudo element to be animated
-        const r1bBefore = CSSRulePlugin.getRule(".PsTop::before")
-        const r1After = CSSRulePlugin.getRule(".PsTop::after")
-        // const rulesBeforeArray:CSSRule[] = [r1bBefore]
-        // const rulesAfterArray:CSSRule[] = [r1After]
+        // grabs the before & after pseudo element
+        const r1bBefore:CSSRule = CSSRulePlugin.getRule(".PsTop::before")
+        const r1After:CSSRule = CSSRulePlugin.getRule(".PsTop::after")
 
         // kicks off the time-line animation
         tL.current
-            .fromTo(r1After, {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}})
-            .to(r1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
-            .to(r1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
-            .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut})
+            .fromTo(r1After, {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}}) // ::after enters the scene from the left, covers the content
+            .to(r1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}}) //::after reveals the content, and leaves the scene from the right
+            .to(r1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1}) // this ::before is already there onPage load, the background color is same with the page, it is covering the content on page load, so when the ::after is leaving, it leaves to
+            .to(img1ref.current, {scale: 1, transformOrigin: 'center', delay: -.5, 'ease':Expo.easeOut}) // creates the zoom out effect of the image in the top section
 
         // the animation for the bottom section, but this animation will not be played immediately.. Only played when it is called to action
         const z1bBefore = CSSRulePlugin.getRule(".PsBottom::before")
         const z1After = CSSRulePlugin.getRule(".PsBottom::after")
         tL2.current = gsap.timeline({defaults:{duration:1, 'ease':Expo.easeInOut}})
             .to('.BottomGuy', {y:0, duration: 2})
-            .fromTo('.AnimT1', {y: '150px', opacity:0}, {y:0, opacity:1, duration: 2, stagger:.5}, '-=1.7')
+            .fromTo('.AnimT1', {y: '150px', opacity:0}, {y:0, opacity:1, duration: 2, stagger:.5}, '-=1.7') // notice here am doing '-=1.7', this can also be done with a delay:-1.7, but the delay will work when using .to, if used for .fromTo, it will not work properly
             .fromTo(z1After, {cssRule: {scaleX: 0, transformOrigin: 'left'}}, {cssRule: {scaleX: 1, transformOrigin: 'left'}}, '-=1.5')
             .to(z1After, {cssRule: {scaleX: 0, transformOrigin: 'right'}})
             .to(z1bBefore, {cssRule: {scaleX: 0, transformOrigin: 'top'}, duration:0, delay: -1})
             .to('.btm_img', {scale: 1, transformOrigin: 'center', 'ease':Expo.easeOut}, '-=.5')
         tL2.current.pause() // Paused!!!
-
-        // creates a timeline
-        // return () => {
-        // };
     }, [])
 
 
-    // for animating the bottom section to the top
+    // for animating the bottom section to the top and back to the bottom
     useEffect(() => {
             if (showBottomSection === true) {
                 tL2.current.play()
@@ -76,7 +70,6 @@ const App = () => {
                 tL2.current.reverse()
             }
     }, [showBottomSection])
-
 
     return (
         <div className="AppMain" ref={mainAppAnim}>
@@ -142,7 +135,6 @@ const App = () => {
                 </div>
             </div>
         </div>
-
     )
 }
 
